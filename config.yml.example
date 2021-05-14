@@ -1,0 +1,84 @@
+Env: 'local'
+Debug: &debug true
+
+Store:
+  Cache:
+    DefaultDriver: go-cache
+    Driver: #[go-cache,redis]
+      - go-cache   
+    Connects:
+      redis: 
+        Host: localhost
+        Port: 6379
+        DbIndex: 2
+        # Password: 
+  DB: 
+    Driver:  #mysql\clickhouse
+      - mysql
+      - clickhouse
+    Connects:
+      mysql:
+        User: root
+        Password: root
+        DbName: caiqin
+        Host: localhost
+        Port: 33060
+      clickhouse:
+        User: default
+        Password: 
+        DbName: default
+        Host: localhost
+        Port: 9000
+
+#抢票配置
+TicketConfig:
+ 
+  Debug: *debug
+  # 登录用
+  User:
+    mobile :  ''
+    password: ''
+    # 登录后再请求报文可以看到
+    authentication : '1619682562339839'
+    # 指定乘客信息[不填默认所有联系人]
+    passengers:
+      - 
+      
+  # ----------  可通过命令行动态指定
+
+  # 定制化
+  Customization:
+    # 出发点
+    From: 'nanpu'
+    # 到达点
+    To: 'sijiao'
+    # 购买日期
+    Date: '2021-05-08'
+    # 船最早的时间
+    MinShipTime: ''
+    # 船最晚的开车时间
+    LatestShipTime: ''
+    # 指定航班
+    LineNum: ''
+    # 指定舱位
+    Class: ''
+
+  # ----------  可通过命令行动态指定
+
+
+  # 目的地字典
+  PortNo:
+    nanpu: 1046
+    shengshan: 1016
+    sijiao: 1010
+    huaniao: 1014
+    gouqi: 1017
+
+  Notice:
+    Flag: true
+    CompanyWx: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=a7b28057-776b-4827-8321-64451e9fa30b"
+
+
+
+  # 回程票
+  # go run main.go -f shengsi -t nanpu -d 2021-05-02 -line 48161
