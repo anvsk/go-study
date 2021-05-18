@@ -9,18 +9,18 @@ import (
 )
 
 func Routers(e *gin.Engine) {
+    middleware.InitJWT()
+    e.POST("login", middleware.Authjwt.LoginHandler)
+
     g := e.Group("goods")
-    g.Use(myTime)
-    g.Use(middleware.RateLimit(1))
-    g.Use(middleware.Print())
-    g.Use(myTime2)
     {
         g.GET("/", goodsHandler)
     }
 
     p := e.Group("user")
+    p.Use(middleware.Authjwt.MiddlewareFunc())
     {
-        p.GET("/info", infoHandler)
+        p.GET("info", infoHandler)
 
     }
 }
