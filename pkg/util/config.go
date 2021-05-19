@@ -1,6 +1,7 @@
 package util
 
 import (
+    "flag"
     "io/ioutil"
     "os"
 
@@ -69,8 +70,11 @@ type User struct {
 }
 
 func initConfig() {
+    var configFilePath string
+    flag.StringVar(&configFilePath, "config", "config.yml", "config file location")
+    flag.Parse()
 
-    file, err := os.Open("config.yml")
+    file, err := os.Open(configFilePath)
 
     if err != nil {
         panic(err)

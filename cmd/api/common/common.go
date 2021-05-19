@@ -3,14 +3,16 @@ package common
 import (
     "go-ticket/pkg/store/db"
 
-    jwt "github.com/appleboy/gin-jwt/v2"
     "github.com/gin-gonic/gin"
-    "github.com/pieterclaerhout/go-log"
     "gorm.io/gorm"
     "gorm.io/gorm/clause"
 )
 
-var IdentityKey = "id"
+var IdentityKey = "ID"
+
+type JwtPayload struct {
+    User
+}
 
 type User struct {
     gorm.Model
@@ -38,21 +40,22 @@ type Breif struct {
 
 // 从jwt解析用户信息
 func Uinfo(c *gin.Context) *User {
-    claims := jwt.ExtractClaims(c)
-    user, _ := c.Get("id")
-    log.InfoDump(user, "user")
-    log.InfoDump(claims, "claims")
-    u, err := user.(*User)
-    if !err {
-        log.Error("jwt get uinfo error")
-        return nil
-    }
-    return u
+    // claims := jwt.ExtractClaims(c)
+
+    u := User{}
+    // u.ID = claims["ID"].(uint)
+    // u.Username = claims["Username"].(string)
+    return &u
 }
 
 func InitUserTable() {
     db.Orm.AutoMigrate(&User{})
     db.Orm.AutoMigrate(&Breif{})
+    issetUser := User{}
+    db.Orm.Where("username='admin'").First(&issetUser)
+    if issetUser.ID > 0 {
+        return
+    }
     // 在冲突时，更新除主键以外的所有列到新值。
     db.Orm.Clauses(clause.OnConflict{
         Columns:   []clause.Column{{Name: "name"}},

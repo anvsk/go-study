@@ -1,0 +1,20 @@
+{
+    "configurations": [
+        
+    {
+        "name": "Launch file",
+        "type": "go",
+        "request": "launch",
+        "mode": "debug",
+        // "program": "/Users/pingan/workspace/go/src/go-study/cmd/api/main.go",
+        "program": "${workspaceFolder}/cmd/api/main.go",
+        "args": [
+            "-config",
+            "../../config.yml"
+        ],
+        "showLog": true,
+        "logOutput": "dap",
+        "output": "debug"
+    }
+    ]
+}

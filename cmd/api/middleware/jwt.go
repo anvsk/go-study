@@ -29,47 +29,39 @@ func InitJWT() *jwt.GinJWTMiddleware {
         Timeout:     time.Hour,
         MaxRefresh:  time.Hour,
         IdentityKey: common.IdentityKey,
-        PayloadFunc: func(data interface{}) jwt.MapClaims {
-            log.InfoDump(111, "PayloadFunc")
-            log.InfoDump(data, "data")
-            payload := jwt.MapClaims{}
-            if v, ok := data.(*common.User); ok {
-                tmp, _ := json.Marshal(v)
-                json.Unmarshal(tmp, &payload)
-                return payload
-            }
-            return jwt.MapClaims{}
-        },
-        // IdentityHandler: func(c *gin.Context) interface{} {
-        //     claims := jwt.ExtractClaims(c)
-        //     log.InfoDump(111, "IdentityHandler")
-        //     return common.User(claims)
-        //     // return &common.User{
-        //     //     UserName: claims[common.IdentityKey].(string),
-        //     // }
-        // },
         // LoginHandler 登录验证方法
         Authenticator: func(c *gin.Context) (interface{}, error) {
-            log.InfoDump(111, "Authenticator")
-
             var loginVals login
             if err := c.ShouldBind(&loginVals); err != nil {
                 return "", jwt.ErrMissingLoginValues
             }
-            username := loginVals.Username
-            password := loginVals.Password
             user := common.User{}
-            db.Orm.Raw("select * from users where username=? and password=? limit 1", username, password).Scan(&user)
-            log.DebugDump(user, "select user")
+            db.Orm.Raw("select * from users where username=? and password=? limit 1", loginVals.Username, loginVals.Password).Scan(&user)
             if user.ID > 0 {
                 return user, nil
             }
             return nil, jwt.ErrFailedAuthentication
         },
-        // 权限校验
+        // login后组织payload
+        // 这里往payload里面加信息，用户信息和其他信息
+        PayloadFunc: func(data interface{}) jwt.MapClaims {
+            payload := jwt.MapClaims{}
+            if v, ok := data.(common.User); ok {
+                tmp, _ := json.Marshal(common.JwtPayload{User: v})
+                json.Unmarshal(tmp, &payload)
+                return payload
+            }
+            return jwt.MapClaims{}
+        },
+        // 解析出payload
+        IdentityHandler: func(c *gin.Context) interface{} {
+            claims := jwt.ExtractClaims(c)
+            return claims
+        },
+        // 权限校验 data=IdentityHandler返回值
         Authorizator: func(data interface{}, c *gin.Context) bool {
-            log.InfoDump(111, "Authorizator")
-            if v, ok := data.(*common.User); ok && v.Username == "admin" {
+            v, ok := data.(jwt.MapClaims)
+            if ok && v["Username"] == "admin" {
                 return true
             }
             return false
