@@ -2,12 +2,25 @@
     "configurations": [
         
     {
-        "name": "Launch file",
+        "name": "API",
         "type": "go",
         "request": "launch",
         "mode": "debug",
-        // "program": "/Users/pingan/workspace/go/src/go-study/cmd/api/main.go",
         "program": "${workspaceFolder}/cmd/api/main.go",
+        "args": [
+            "-config",
+            "../../config.yml"
+        ],
+        "showLog": true,
+        "logOutput": "dap",
+        "output": "debug"
+    },
+    {
+        "name": "CRON",
+        "type": "go",
+        "request": "launch",
+        "mode": "debug",
+        "program": "${workspaceFolder}/cmd/cron/main.go",
         "args": [
             "-config",
             "../../config.yml"

@@ -2,7 +2,7 @@
 package enum
 
 const (
-    _   int = 2000 + iota
+    _   int = 20000 + iota
     TOKEN_MISSING
     TOKEN_EXPIRE
 )

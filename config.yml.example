@@ -39,7 +39,7 @@ TicketConfig:
     mobile :  ''
     password: ''
     # 登录后再请求报文可以看到
-    authentication : '1619682562339839'
+    authentication : ''
     # 指定乘客信息[不填默认所有联系人]
     passengers:
       - 
@@ -76,7 +76,7 @@ TicketConfig:
 
   Notice:
     Flag: true
-    CompanyWx: "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=a7b28057-776b-4827-8321-64451e9fa30b"
+    CompanyWx: ""
 
 
 

@@ -14,6 +14,7 @@ require (
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pieterclaerhout/go-log v1.14.0
 	github.com/prometheus/client_golang v1.10.0
+	github.com/robfig/cron/v3 v3.0.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sethgrid/pester v1.1.0
 	github.com/stretchr/testify v1.6.1 // indirect

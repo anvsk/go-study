@@ -9,7 +9,7 @@
        "configurations": [
            
        {
-           "name": "Launch file",
+           "name": "API",
            "type": "go",
            "request": "launch",
            "mode": "debug",

@@ -1,7 +1,6 @@
 package shop
 
 import (
-    "errors"
     "go-ticket/cmd/api/com"
     "go-ticket/service/shop"
 
@@ -14,7 +13,7 @@ func goodsHandler(c *gin.Context) {
         com.Error(c, err.Error())
         return
     }
-    com.Responce(c, shop.List(req), errors.New("aa"), nil)
+    com.Responce(c, shop.List(req))
 }
 
 func infoHandler(c *gin.Context) {
