@@ -1,26 +1,22 @@
 package shop
 
 import (
-    "go-ticket/cmd/api/common"
+    "errors"
+    "go-ticket/cmd/api/com"
     "go-ticket/service/shop"
-    "net/http"
 
     "github.com/gin-gonic/gin"
 )
 
 func goodsHandler(c *gin.Context) {
-    // <-time.After(200 * time.Millisecond)
     req := shop.ReqList{}
     if err := c.Bind(&req); err != nil {
-        c.JSON(http.StatusBadRequest, gin.H{"params error": err.Error()})
+        com.Error(c, err.Error())
         return
     }
-
-    c.JSON(http.StatusOK, gin.H{
-        "data": shop.List(req),
-    })
+    com.Responce(c, shop.List(req), errors.New("aa"), nil)
 }
 
 func infoHandler(c *gin.Context) {
-    c.JSON(200, common.Uinfo(c))
+    com.Responce(c, com.Uinfo(c))
 }

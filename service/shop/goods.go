@@ -1,15 +1,14 @@
 package shop
 
 type goods struct {
-    Name   string
-    Stocks int
-    Price  int
+    Name   string `json:"name"`
+    Stocks int    `json:"stocks"`
+    Price  int    `json:"price"`
 }
 
 type ReqList struct {
     Page  int `form:"page"`
     Limit int `form:"limit"`
-    // Type  int `form:"type" binding:"required"`
 }
 
 func List(req ReqList) []goods {
@@ -31,7 +30,7 @@ func List(req ReqList) []goods {
         },
     }
     if req.Limit == 0 {
-        req.Limit = 1
+        req.Limit = 10
     }
     if req.Limit > len(g) {
         req.Limit = len(g)

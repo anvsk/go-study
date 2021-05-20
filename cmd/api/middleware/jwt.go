@@ -1,7 +1,7 @@
 package middleware
 
 import (
-    "go-ticket/cmd/api/common"
+    "go-ticket/cmd/api/com"
     "time"
 
     jwt "github.com/appleboy/gin-jwt/v2"
@@ -21,12 +21,12 @@ func InitJWT() *jwt.GinJWTMiddleware {
         Key:         []byte("78^*^*&SJFHJSDHFLS^&%$^"),
         Timeout:     time.Hour,
         MaxRefresh:  time.Hour,
-        IdentityKey: common.IdentityKey,
+        IdentityKey: com.IdentityKey,
         // LoginHandler 登录验证方法
-        Authenticator: common.Authenticator,
+        Authenticator: com.Authenticator,
         // login后组织payload
         // 这里往payload里面加信息，用户信息和其他信息
-        PayloadFunc: common.PayloadFunc,
+        PayloadFunc: com.PayloadFunc,
 
         /**********         校验token       ***********/
 
@@ -37,13 +37,6 @@ func InitJWT() *jwt.GinJWTMiddleware {
             }
             return true
         },
-        // 权限不通过
-        // Unauthorized: func(c *gin.Context, code int, message string) {
-        //     c.JSON(code, gin.H{
-        //         "code":    405,
-        //         "message": "Unauthorized",
-        //     })
-        // },
     })
 
     if err != nil {

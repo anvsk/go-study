@@ -1,7 +1,7 @@
 package main
 
 import (
-    "go-ticket/cmd/api/common"
+    "go-ticket/cmd/api/com"
     "go-ticket/cmd/api/internal/admin"
     "go-ticket/cmd/api/internal/shop"
     "go-ticket/pkg/store/cache"
@@ -39,7 +39,7 @@ func main() {
     // 连接数据库
     cache.InitCache()
     // 生成测试用户表
-    common.InitUserTable()
+    com.InitUserTable()
 
     server01 := &http.Server{
         Addr:         ":8081",
