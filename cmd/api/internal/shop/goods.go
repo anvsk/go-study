@@ -22,10 +22,5 @@ func goodsHandler(c *gin.Context) {
 }
 
 func infoHandler(c *gin.Context) {
-    uinfo := common.Uinfo(c)
-    c.JSON(200, gin.H{
-        "userID":   uinfo.ID,
-        "userName": uinfo.Username,
-        "text":     "Hello World.",
-    })
+    c.JSON(200, common.Uinfo(c))
 }

@@ -1,6 +1,7 @@
 package util
 
 import (
+    "encoding/json"
     "reflect"
     "time"
 )
@@ -40,4 +41,13 @@ func CompareTime(time1, time2 string) (flag bool, err error) {
         return true, nil
     }
     return
+}
+
+// 类型互转，通过json编解码
+func Type2type(from interface{}, to interface{}) {
+    bytes, err := json.Marshal(from)
+    if err != nil {
+        return
+    }
+    json.Unmarshal(bytes, to)
 }
