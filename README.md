@@ -1,15 +1,15 @@
 # go-study
-# go拿来练手的好项目、go简易框架、go学习
+### go拿来练手的好项目、go简易框架、go学习
 
 #### 自己封装的go项目架构
 
-## <a href="https://github.com/anvsk/go-study/Debug.md">Debug和相关工具配置</a>
+## <a href="https://github.com/anvsk/go-study/blob/main/Debug.md">Debug和相关工具配置</a>
 
 ### 目录说明
 - cmd          功能模块，每个模块打包成独立的执行文件，之间毫无关联
 
-    - ticket   DEMO: 抢票脚本
-    - api      GIN/ECHO API服务模块
+    - ticket   DEMO: 嵊泗抢票脚本
+    - api      GIN API服务模块[已加入gin、路由、中间件、gorm示例、具体看该目录README.md]
     - rpc      rpc 服务模块
     - cron     定时脚本模块
     - test     测试用例
@@ -23,7 +23,7 @@
 config.yml      yml格式配置文件
 air.toml        api服务热编译
 
-> 目前仅完成ticket模块，下一步完成api、rpc
+> 目前完成ticket、api、cron模块，下一步完成rpc
 
 
 

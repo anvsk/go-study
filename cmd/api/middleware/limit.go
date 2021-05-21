@@ -1,6 +1,7 @@
 package middleware
 
 import (
+    "fmt"
     "time"
 
     llimit "github.com/aviddiviner/gin-limit"
@@ -47,4 +48,21 @@ func RateLimitByChannel(N int) gin.HandlerFunc {
 // 异常打印
 func Print() gin.HandlerFunc {
     return ginMerry.New(true).Handler()
+}
+
+// CrossDomain 全局添加跨域允许
+func CrossDomain() gin.HandlerFunc {
+    return func(c *gin.Context) {
+        c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+        c.Writer.Header().Set("Access-Control-Allow-Headers", "access-token, x-requested-with, content-type")
+    }
+}
+
+// 程序耗时
+func handleTime(c *gin.Context) {
+    start := time.Now()
+    c.Next()
+    // 统计时间
+    since := time.Since(start)
+    fmt.Println("程序用时：", since)
 }

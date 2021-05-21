@@ -10,6 +10,7 @@ require (
 	github.com/fatih/color v1.11.0 // indirect
 	github.com/gin-gonic/gin v1.7.1
 	github.com/go-redis/redis v6.15.9+incompatible
+	github.com/holdno/snowFlakeByGo v0.0.0-20180510033652-d23f8a8cadd7
 	github.com/onsi/gomega v1.12.0 // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pieterclaerhout/go-log v1.14.0

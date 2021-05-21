@@ -2,11 +2,12 @@
 
 
 ### api服务端
-- com           #公用代码块
+- com           #公用代码块[包含gorm的使用示例:迁徙、curd、关联模型、预加载]
 - enum          #枚举值、缓存key、常量定义
 - internal      #按不同服务区分，路由|端口隔离，按需加载
   - admin       #后台模块
   - shop        #前台商城模块
+    - #此级目录可按业务再细分多个目录
     - goods     #类似controller、核心逻辑调用service里面代码或后期rpc服务
     - router    #路由、中间件绑定定义
 - middleware    #自定义中间件
