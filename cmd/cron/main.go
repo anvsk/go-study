@@ -1,9 +1,13 @@
 package main
 
 import (
+    "bytes"
     "fmt"
+    "go-ticket/pkg/util"
+    "go-ticket/service/ticket"
+    "log"
+    "os/exec"
     "testing"
-    "time"
 
     "github.com/robfig/cron/v3"
 )
@@ -33,6 +37,9 @@ Entry                  | Description                                | Equivalent
 
 func main() {
     runTest()
+    // exec_shell("pwd")
+    // exec_shell("./tmp/ticket")
+
 }
 
 func runTest() {
@@ -40,19 +47,18 @@ func runTest() {
         cron.Recover(cron.DefaultLogger), // or use cron.DefaultLogger
     ))
     c.Start()
-    // defer c.Stop()
+    defer c.Stop()
     c.AddFunc("*/1 * * * * *", func() {
-        <-time.After(time.Minute)
-        fmt.Println(time.Now().Clock())
+        // fmt.Println(time.Now().Clock())
     })
-    c.AddFunc("*/2 * * * * *", func() { fmt.Println("Every 2 second ") })
-    c.AddFunc("@every 1s", func() { fmt.Println("@every 1s") })
-    c.AddFunc("0 30 * * * *", func() { fmt.Println("Every hour on the half hour") })
-    c.AddFunc("@hourly", func() { fmt.Println("Every hour") })
-    c.AddFunc("@every 1h30m", func() { fmt.Println("Every hour thirty") })
-    c.AddFunc("@daily", func() { fmt.Println("Every day") })
-    <-time.After(time.Minute)
-    // c.Stop() // Stop the scheduler (does not stop any jobs already running).
+    c.AddFunc("@every 5s", func() { fmt.Println("@every 5s") })
+    c.AddFunc("@every 1m", func() { panic("panic") })
+    c.AddFunc("0 0 8 * * *", func() {
+        util.InitUtil()
+        ticket.Bootstrap()
+    })
+    for {
+    }
 }
 
 func TestJobPanicRecovery(t *testing.T) {
@@ -72,4 +78,16 @@ func TestJobPanicRecovery(t *testing.T) {
     //     }
     //     return
     // }
+}
+
+func exec_shell(s string) {
+    cmd := exec.Command("/bin/bash", "-c", s)
+    var out bytes.Buffer
+
+    cmd.Stdout = &out
+    err := cmd.Run()
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Printf("%s", out.String())
 }

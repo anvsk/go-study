@@ -1,9 +1,17 @@
 # go-study
-### go拿来练手的好项目、go简易框架、go学习
+#### go拿来练手的好项目、go简易框架、go学习
 
-#### 自己封装的go项目架构
+##### 包含以下技能点DEMO演示、属于
+* Go项目规范、目录文件命名等、基础架构搭建[config、store、cache、toollibs]
+* Gin高性能WEB框架的使用、包含中间件JWT、路由定义、目录结构规划和封装
+* Gorm Go版MYSQL ORM 使用示例包含自动迁徙、关联模型、预加载
+* 抢票DEMO脚本
+> todo
+1. cron 完善
+2. rpc [etcd+grpc]
+3. kafka消息系统
 
-## <a href="https://github.com/anvsk/go-study/blob/main/Debug.md">Debug和相关工具配置</a>
+##### <a href="https://github.com/anvsk/go-study/blob/main/Debug.md">工欲善其事必先利其器、配置DEBUG环境、有助于调试和看源码</a>
 
 ### 目录说明
 - cmd          功能模块，每个模块打包成独立的执行文件，之间毫无关联

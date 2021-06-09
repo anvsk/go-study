@@ -7,6 +7,9 @@ import (
 )
 
 func Routers(e *gin.Engine) {
+    e.Use(middleware.Cors())
+    e.GET("wechat/official-account/menu", testMenu)
+
     middleware.InitJWT()
     e.POST("login", middleware.Authjwt.LoginHandler)
 

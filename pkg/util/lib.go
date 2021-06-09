@@ -31,26 +31,6 @@ func InArray(need interface{}, haystack interface{}) (exists bool, index int) {
     return
 }
 
-// 比较时间
-func CompareTime(time1, time2 string) (flag bool, err error) {
-    if time1 == time2 {
-        flag = true
-        return
-    }
-    t1, err := time.Parse("15:04", time1)
-    if err != nil {
-        return
-    }
-    t2, err := time.Parse("15:04", time2)
-    if err != nil {
-        return
-    }
-    if t1.Before(t2) {
-        return true, nil
-    }
-    return
-}
-
 // 类型互转，通过json编解码
 func Type2type(from interface{}, to interface{}) {
     bytes, err := json.Marshal(from)
@@ -58,11 +38,6 @@ func Type2type(from interface{}, to interface{}) {
         return
     }
     json.Unmarshal(bytes, to)
-}
-
-// GetCurrentTimeText 获取当前时间format
-func GetCurrentTimeText() string {
-    return time.Now().Format("2006-01-02 15:04:05")
 }
 
 // BindArgsWithGin 绑定请求参数
@@ -112,15 +87,6 @@ func TernaryOperation(exist bool, res, el interface{}) interface{} {
         return res
     }
     return el
-}
-
-// GetBeforeDate 获取n天前的时间
-func GetDateFromNow(n int) time.Time {
-    timer, _ := time.ParseInLocation("2006-01-02", time.Now().Format("2006-01-02"), time.Local)
-    if n == 0 {
-        return timer
-    }
-    return timer.AddDate(0, 0, n)
 }
 
 // 获取机器ip

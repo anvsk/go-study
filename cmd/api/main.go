@@ -49,7 +49,7 @@ func main() {
     }
 
     server02 := &http.Server{
-        Addr:         ":8080",
+        Addr:         ":8082",
         Handler:      newRouter(shop.Routers),
         ReadTimeout:  2 * time.Second,
         WriteTimeout: 2 * time.Second,

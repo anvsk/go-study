@@ -42,6 +42,9 @@ type listArgs struct {
 
 func list() *[]ListData {
     res := ListRes{}
+    if Config.Customization.Date == "" {
+        Config.Customization.Date = util.WeekDate(6)
+    }
     args := listArgs{
         Config.PortNo[Config.Customization.From],
         Config.PortNo[Config.Customization.To],
