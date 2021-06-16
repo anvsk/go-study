@@ -71,7 +71,7 @@ type User struct {
 
 func initConfig() {
     var configFilePath string
-    flag.StringVar(&configFilePath, "config", "config.yml", "config file location")
+    flag.StringVar(&configFilePath, "config", "../../config.yml", "config file location")
     flag.Parse()
 
     file, err := os.Open(configFilePath)

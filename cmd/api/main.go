@@ -2,8 +2,7 @@ package main
 
 import (
     "go-ticket/cmd/api/com"
-    "go-ticket/cmd/api/internal/admin"
-    "go-ticket/cmd/api/internal/shop"
+    "go-ticket/cmd/api/router"
     "go-ticket/pkg/store/cache"
     "go-ticket/pkg/store/db"
     "go-ticket/pkg/util"
@@ -43,14 +42,14 @@ func main() {
 
     server01 := &http.Server{
         Addr:         ":8081",
-        Handler:      newRouter(admin.Routers),
+        Handler:      newRouter(router.AdminRouters),
         ReadTimeout:  5 * time.Second,
         WriteTimeout: 10 * time.Second,
     }
 
     server02 := &http.Server{
         Addr:         ":8082",
-        Handler:      newRouter(shop.Routers),
+        Handler:      newRouter(router.ShopRouters),
         ReadTimeout:  2 * time.Second,
         WriteTimeout: 2 * time.Second,
     }

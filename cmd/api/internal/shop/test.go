@@ -16,7 +16,7 @@ type ReqMenuJson struct {
     Menujson string `form:"menujson"`
 }
 
-func testMenu(c *gin.Context) {
+func TestMenu(c *gin.Context) {
     req := ReqMenuJson{}
     if err := c.Bind(&req); err != nil {
         com.Error(c, err.Error())
