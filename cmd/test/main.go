@@ -1,6 +1,12 @@
 package main
 
-import "go-ticket/cmd/test/pprof"
+import (
+    "go-ticket/cmd/test/leetcode"
+    "math/rand"
+    "time"
+)
+
+var rr = rand.New(rand.NewSource(time.Now().UnixNano()))
 
 func main() {
     // util.InitUtil()
@@ -25,5 +31,29 @@ func main() {
     // fmt.Println(a.Len())
 
     // sync.TestCond()
-    pprof.Testranddomstr()
+    // pprof.Testranddomstr()
+
+    // fmt.Println(leetcode.Stradd("98", "55"))
+    // ss := "klsadjla"
+    // fmt.Println(ss[2])
+    // rand.Seed(time.Now().UnixNano())
+    // for i := 0; i < 3; i++ {
+    // fmt.Println(myrand())
+    // fmt.Println(myrand())
+    // fmt.Println(myrand())
+    // fmt.Println("--====--")
+    // }
+
+    // for i := 0; i < 5; i++ {
+    //     rand.Seed(time.Now().UnixNano())
+    //     fmt.Println(rand.Intn(100))
+    // }
+
+    leetcode.Test()
+
+    <-time.After(time.Second)
+}
+
+func myrand() int {
+    return rr.Intn(9999999)
 }

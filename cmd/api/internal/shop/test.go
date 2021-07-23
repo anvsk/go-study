@@ -35,7 +35,7 @@ func TestMenu(c *gin.Context) {
 func reqWx(menujson string) (ss string, err error) {
     log.InfoDump(menujson, "menujson")
 
-    url := "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=45_3KV2l81kaijP9hoQQwJs6JVXrCMxmWTMeT96CaRxLGvIiHeS_OdaQXrFt2sJqoO2ix3rN72BRN48Pc1eCXaW0jZTDwXOtasRu9NTao7GHWCYG7_cLpqlp5F6R16zy5vLD9YFedMjE0awfD7aEVWeABANEF"
+    url := "https://api.weixin.qq.com/cgi-bin/menu/create?access_token=46_qZt6mXQ4ymLfxaGv-EcMH9JoF4xYo1fhE335gMrJfFe6QjMKHguzsJXkqlVBJsXRZ8KhFeGQrRNxSoYkks71ARJTb78FpKzdUAWHflIR-tzXYGylrImb3q7edkA-od56bP9WX3VlvHOwqVQdGDAjAEAAXU"
     method := "POST"
 
     payload := strings.NewReader(menujson)

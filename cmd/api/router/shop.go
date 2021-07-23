@@ -9,7 +9,7 @@ import (
 
 func ShopRouters(e *gin.Engine) {
     e.Use(middleware.Cors())
-    e.GET("wechat/official-account/menu", shop.TestMenu)
+    e.POST("wechat/official-account/menu", shop.TestMenu)
 
     middleware.InitJWT()
     e.POST("login", middleware.Authjwt.LoginHandler)

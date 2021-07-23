@@ -11,14 +11,18 @@ require (
 	github.com/gin-gonic/gin v1.7.1
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/holdno/snowFlakeByGo v0.0.0-20180510033652-d23f8a8cadd7
+	github.com/labstack/echo v3.3.10+incompatible
+	github.com/labstack/gommon v0.3.0 // indirect
 	github.com/onsi/gomega v1.12.0 // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/pieterclaerhout/go-log v1.14.0
+	github.com/pkg/profile v1.2.1
 	github.com/prometheus/client_golang v1.10.0
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sethgrid/pester v1.1.0
 	github.com/stretchr/testify v1.6.1 // indirect
+	github.com/unrolled/secure v1.0.9
 	github.com/utrack/gin-merry v0.0.0-20160429113854-ed2bd26ee5ad
 	github.com/yangxikun/gin-limit-by-key v0.0.0-20190512072151-520697354d5f
 	golang.org/x/crypto v0.0.0-20200820211705-5c72a883971a // indirect

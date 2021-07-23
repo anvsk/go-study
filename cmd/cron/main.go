@@ -3,13 +3,14 @@ package main
 import (
     "bytes"
     "fmt"
-    "go-ticket/pkg/util"
-    "go-ticket/service/ticket"
     "log"
+    "net/http"
     "os/exec"
     "testing"
 
+    "github.com/labstack/echo"
     "github.com/robfig/cron/v3"
+    "github.com/unrolled/secure"
 )
 
 /**************************
@@ -36,27 +37,49 @@ Entry                  | Description                                | Equivalent
 **************************/
 
 func main() {
-    runTest()
+    main2()
+    // runTest()
     // exec_shell("pwd")
     // exec_shell("./tmp/ticket")
 
 }
 
+var myHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+    w.Write([]byte("hello world"))
+})
+
+func main2() {
+    secureMiddleware := secure.New(secure.Options{
+        // SSLRedirect: true,
+        // SSLHost: "localhost:8888",
+        // FrameDeny: true,
+    })
+
+    e := echo.New()
+    e.GET("/", func(c echo.Context) error {
+        return c.String(http.StatusOK, "X-Frame-Options header is now `DENY`.")
+    })
+
+    e.Use(echo.WrapMiddleware(secureMiddleware.Handler))
+    e.Logger.Fatal(e.Start("127.0.0.1:3000")) 
+}
+
 func runTest() {
-    c := cron.New(cron.WithSeconds(), cron.WithChain(
-        cron.Recover(cron.DefaultLogger), // or use cron.DefaultLogger
-    ))
+    // c := cron.New(cron.WithSeconds(), cron.WithChain(
+    //     cron.Recover(cron.DefaultLogger), // or use cron.DefaultLogger
+    // ))
+    c := cron.New(cron.WithSeconds())
     c.Start()
     defer c.Stop()
-    c.AddFunc("*/1 * * * * *", func() {
-        // fmt.Println(time.Now().Clock())
-    })
-    c.AddFunc("@every 5s", func() { fmt.Println("@every 5s") })
-    c.AddFunc("@every 1m", func() { panic("panic") })
-    c.AddFunc("0 0 8 * * *", func() {
-        util.InitUtil()
-        ticket.Bootstrap()
-    })
+    // c.AddFunc("*/1 * * * * *", func() {
+    //     fmt.Println(time.Now().Clock())
+    // })
+    c.AddFunc("@every 1s", func() { fmt.Println("@every 5s") })
+    // c.AddFunc("@every 1m", func() { panic("panic") })
+    // c.AddFunc("0 0 8 * * *", func() {
+    //     util.InitUtil()
+    //     ticket.Bootstrap()
+    // })
     for {
     }
 }
