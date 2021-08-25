@@ -1,4 +1,4 @@
-package sync
+package sync2
 
 import (
     "log"

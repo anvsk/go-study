@@ -10,6 +10,7 @@ require (
 	github.com/fatih/color v1.11.0 // indirect
 	github.com/gin-gonic/gin v1.7.1
 	github.com/go-redis/redis v6.15.9+incompatible
+	github.com/golang-module/carbon v1.4.4
 	github.com/holdno/snowFlakeByGo v0.0.0-20180510033652-d23f8a8cadd7
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/gommon v0.3.0 // indirect
@@ -21,7 +22,6 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sethgrid/pester v1.1.0
-	github.com/stretchr/testify v1.6.1 // indirect
 	github.com/unrolled/secure v1.0.9
 	github.com/utrack/gin-merry v0.0.0-20160429113854-ed2bd26ee5ad
 	github.com/yangxikun/gin-limit-by-key v0.0.0-20190512072151-520697354d5f
