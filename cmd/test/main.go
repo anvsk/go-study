@@ -1,146 +1,409 @@
 package main
 
 import (
+	"bytes"
 	"context"
+	"encoding/binary"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"math/rand"
 	"net/http"
 	"os"
 	"os/signal"
+	"reflect"
+	"strconv"
 	"sync"
 	"syscall"
 	"time"
+	"unsafe"
 
 	_ "net/http/pprof"
+
+	"golang.org/x/text/encoding/simplifiedchinese"
+	"golang.org/x/text/transform"
+	"gorm.io/gorm"
 )
 
 var rr = rand.New(rand.NewSource(time.Now().UnixNano()))
 var wg sync.WaitGroup
 
 func main() {
+	// println("dasda")
+	// s := fmt.Sprintln("aaaa", wg, rr)
+	// fmt.Println(s)
+	// TestMostT()
+}
+
+func main2() {
+
 	// util.InitUtil()
-	// cache.InitCache()
-	// key := "ccc"
-	// cache.C.Set(key, 123, 10*time.Second)
-	// log.Debug(cache.C.Get(key))
+
 	// db.InitDB()
-	// for i := 0; i < 1000000000000000000; i++ {
-	//     // <-time.After(2 * time.Millisecond)
-	//     log.Debug(i)
-	//     go func(ii int) {
-	//         time.After(100 * time.Millisecond)
-	//         log.Info(ii)
-	//     }(i)
-	//     // go db.TestMysql()
-	//     // go db.TestCH()
+	// var res AnswerQuestion
+	// db.Orm.First(&res)
+	// plog.InfoDump(res, "res")
+	// plog.Info(res.CreatedAt)
+	// plog.Info(res.CreatedAt.Unix())
+	// plog.Info(time.Unix(res.CreatedAt.Unix(), 0))
 
-	// }
-	// <-time.After(1 * time.Hour)
-	// a := "aaaa"
-	// fmt.Println(a.Len())
+	// s := cuetomMap{}
+	// s.Store("a", "a")
+	// s.Store("b", "b")
+	// fmt.Println(s.Load("a"))
+	// fmt.Println(s.Lists()...)
+	// aaa := &aacd{"1"}
 
-	// sync.TestCond()
-	// pprof.Testranddomstr()
+	// s := sync.Map{}
+	// s.Store("a", aaa)
+	// // v, ok := s.LoadOrStore("a", 2)
 
-	// fmt.Println(leetcode.Stradd("98", "55"))
-	// ss := "klsadjla"
-	// fmt.Println(ss[2])
-	// rand.Seed(time.Now().UnixNano())
-	// for i := 0; i < 3; i++ {
-	// fmt.Println(myrand())
-	// fmt.Println(myrand())
-	// fmt.Println(myrand())
-	// fmt.Println("--====--")
-	// }
+	// // fmt.Println(v)
+	// // fmt.Println(ok)
+	// // fmt.Println(s.Load("a"))
 
-	// for i := 0; i < 5; i++ {
-	//     rand.Seed(time.Now().UnixNano())
-	//     fmt.Println(rand.Intn(100))
-	// }
+	// aaa.name = "2"
+	// fmt.Println(aaa)
+	// change(aaa)
+	// fmt.Println(aaa)
+	// fmt.Println(s.Load("a"))
+	// b := *aaa
+	// fmt.Println(b)
+	// change2(aaa)
+	// fmt.Println(aaa)
+	// fmt.Println(b)
+	// data := []byte{1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13}
+	// // tipBytes := make([]byte, len(data)-8)
+	// tipBytes := []byte{}
+	// fmt.Println(tipBytes)
+	// // for i := 0; i < len(data)-8; i++ {
+	// // 	tipBytes[i] =
+	// // }
+	// tipBytes = append(tipBytes, data[5:(5+len(data)-8)]...)
+	// fmt.Println(tipBytes)
 
-	// leetcode.Test()
-	go func() {
-		http.ListenAndServe(":9008", nil)
-	}()
-	// f, err := os.Create("trace.out")
-	// if err != nil {
-	// 	panic(err)
-	// }
+	a := 88
 
-	// defer f.Close()
+	fmt.Println(a)
+	fmt.Println(time.Now())
+	// fmt.Println(a == nil)
+}
 
-	// //启动trace goroutine
-	// err = trace.Start(f)
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// defer trace.Stop()
+func test1() *aacd {
+	return nil
+}
 
-	// log.SetFlags(0)
-	// log.Println("begin", carbon.Now().ToDateTimeString())
-	// a := []int{1}
-	// a = append(a, 1, 2, 3)
-	// println(a)
-	// println(append([]byte("hello "), "world"...))
-	// fmt.Println(string(append([]byte("hello "), "world"...)))
-	// t1 := time.Now()
-	// time.Sleep(time.Second)
-	// t2 := time.Since(t1)
-	// println(t2)
-	// sliceBiggerCapNums()
-	// sortprintln(5)
-	// SignalHandle()
-	// testContext()
-	// consume(15)
-	// sync2.Comparesyncchan()
-	// getslicecap()
-	// ctx,_:=context.WithTimeout(context.Background(),time.Second)
-	// testclosechan()
-	// go gogogo()
-	// go gogogo()
-	// go gogogo2()
-	// go gogogo3()
-	// go gogogo3()
-	// go gogogo3()
-	// go gogogo3()
-	// go gogogo3()
-	// go gogogo3()
-	// go gogogo()
-	// gogogo()
-	// println(GameCallScore)
-	// println(GameCallScore2)
-	// println(GameCallScore3)
-	// println(GamePlaying)
-	// println(GamePlaying2)
-	// println(GamePlaying3)
-	// println(GamePlaying3)
-	// println(aa)
-	// println(GameEnd2)
-	// s := []int{1, 2, 3, 4, 5, 6}
-	// a := s[:3]
-	// a = append(a, 7)
-	// fmt.Println(s, a) //[6/6]0x14000157f38 [4/6]0x14000157f38 [1 2 3 7 5 6] [1 2 3 7]
-	// b := append(a, []int{8, 8, 9}...)
-	// fmt.Println(s, a, b)//[1 2 3 7 5 6] [1 2 3 7] [1 2 3 7 8 8 9]
-	// a 1,2,3,7,5,6
-	// s =a
-	// var x int
-	// t := runtime.GOMAXPROCS()
-	// fmt.Println(runtime.NumCPU())
-	// for i := 0; i < 100; i++ {
-	// 	go func() {
-	// 		for {
-	// 			x++
-	// 		}
-	// 	}()
-	// }
-	// time.Sleep(time.Second)
-	// fmt.Println("x =", x)
-	// log.Println("end", carbon.Now().ToDateTimeString())
+func change(a *aacd) {
+	a.name = "3"
 
-	// for {
-	// }
+}
+
+func change2(a *aacd) {
+	a.name = "333"
+
+}
+
+type aacd struct {
+	name string
+}
+
+type cuetomMap struct {
+	sync.Map
+}
+
+func (s *cuetomMap) Lists() (res []interface{}) {
+	s.Range(func(key, value interface{}) bool {
+		res = append(res, value)
+		return true
+	})
+	return
+}
+
+type AnswerQuestion struct {
+	gorm.Model
+	UserID int
+}
+
+func (*AnswerQuestion) TableName() string {
+	return "answer_question"
+}
+
+// func main() {
+// 	ch2 := make(chan int, 1)
+// 	fmt.Println("发送前")
+// 	ch2 <- 10
+// 	fmt.Println("发送成功")
+// }
+
+type sst struct {
+	s [3]int
+}
+
+func (i *sst) ss() {
+	i.s[1] = 99
+	// i.s = [3]int{1, 1, 1}
+}
+
+func TransferBytes2AsciiCodeString(b []byte) string {
+	bh := (*reflect.SliceHeader)(unsafe.Pointer(&b))
+	sh := reflect.StringHeader{bh.Data, bh.Len}
+	return *(*string)(unsafe.Pointer(&sh))
+}
+
+func Utf8ToGbk(s []byte) []byte {
+	reader := transform.NewReader(bytes.NewReader(s), simplifiedchinese.GBK.NewEncoder())
+	d, e := ioutil.ReadAll(reader)
+	if e != nil {
+		return nil
+	}
+	return d
+}
+
+func DebugHex(modelData []byte) {
+	fmt.Println("hexData----------->")
+	for i := 0; i < len(modelData); i++ {
+		fmt.Printf("%s ", strconv.FormatInt(int64(modelData[i]), 16))
+	}
+	fmt.Println("hexData----------->")
+}
+
+func IntToBytes(n int) []byte {
+	x := int32(n)
+	bytesBuffer := bytes.NewBuffer([]byte{})
+	binary.Write(bytesBuffer, binary.BigEndian, x)
+	return bytesBuffer.Bytes()
+}
+
+func IntToBytesLittle(n int) []byte {
+	x := int32(n)
+	bytesBuffer := bytes.NewBuffer([]byte{})
+	binary.Write(bytesBuffer, binary.LittleEndian, x)
+	return bytesBuffer.Bytes()
+}
+
+// func IntToBytes(n int) []byte {
+// 	x := int32(n)
+// 	bytesBuffer := bytes.NewBuffer([]byte{})
+// 	binary.Write(bytesBuffer, binary.BigEndian, x)
+// 	return bytesBuffer.Bytes()
+// }
+
+func PadLeft(oriStr string, targetLength int, padChar string) string {
+	length := len(oriStr)
+	if length < targetLength {
+		differLength := targetLength - length
+		var i int
+		var buffer bytes.Buffer
+		for i = 0; i < differLength; i++ {
+			buffer.WriteString(padChar)
+		}
+		buffer.WriteString(oriStr)
+		return buffer.String()
+	}
+
+	return oriStr
+}
+
+func GetAsciiStr(input string, ModelLen, ModelNo int) []byte {
+	var res []byte
+	b := Transfer2AsciiCodeByte(input)
+	if len(b) == 0 {
+		for i := 0; i < ModelLen; i++ {
+			res = append(res, 32)
+		}
+	} else {
+		for i := 0; i < ModelLen; i++ {
+			if i < len(b) {
+				res = append(res, b[i])
+			} else {
+				if ModelNo != 0 {
+					res[i] = 48
+				} else {
+					res[i] = 32
+				}
+			}
+		}
+	}
+	return res
+}
+
+func buildSend2DeviceDataForCraftCommandCraftNames(s string) []byte {
+	var result []byte
+	/**
+	工艺不足20字符的，右侧补空格
+	转assic码，取前20个字节
+	统计前20个字节中大于127的字节个数
+	大于127的字节个数为奇数个，则将末位变成32
+	*/
+	str1 := PadRight(s, 20, " ")
+
+	result = append(result, []byte(str1)[:20]...)
+	num1 := 0
+	for index := 0; index < len(result); index++ {
+		if result[index] > 127 {
+			num1++
+		}
+	}
+	if num1%2 > 0 {
+		result[19] = 32
+	}
+	return result
+}
+
+func buildSend2DeviceDataForCraftCommandCraftNames2(s string) []byte {
+	var result []byte
+	/**
+	工艺不足20字符的，右侧补空格
+	转assic码，取前20个字节
+	统计前20个字节中大于127的字节个数
+	大于127的字节个数为奇数个，则将末位变成32
+	*/
+	str1 := PadRight(s, 20, " ")
+
+	result = append(result, []byte(str1)[:20]...)
+	num1 := 0
+	for index := 0; index < len(result); index++ {
+		if result[index] > 127 {
+			num1++
+		}
+	}
+	if num1%2 > 0 {
+		result[19] = 32
+	}
+	return result
+}
+
+func UTF82GB2312(s []byte) ([]byte, error) {
+	reader := transform.NewReader(bytes.NewReader(s), simplifiedchinese.HZGB2312.NewEncoder())
+	d, e := ioutil.ReadAll(reader)
+	if e != nil {
+		return nil, e
+	}
+	return d, nil
+}
+
+func PadRight(oriStr string, targetLength int, padChar string) string {
+	length := len(oriStr)
+	var buffer bytes.Buffer
+	buffer.WriteString(oriStr)
+	if length < targetLength {
+		differLength := targetLength - length
+		var i int
+		for i = 0; i < differLength; i++ {
+			buffer.WriteString(padChar)
+		}
+		return buffer.String()
+	}
+
+	return oriStr
+}
+
+// public static byte[] ByteToCharArray(byte val)
+//         {
+//             byte[] Model = new byte[2];
+//             byte ModelPriority = (byte)(val >> 4 & 15);
+//             if (!(ModelPriority > 9))
+//             {
+//                 Model[0] = (byte)(48 + ModelPriority);
+//             }
+//             else if ((ModelPriority > 9 && ModelPriority < 16))
+//             {
+//                 Model[0] = (byte)(55 + ModelPriority);
+//             }
+//             ModelPriority = (byte)(val & 15);
+//             if (!(ModelPriority > 9))
+//             {
+//                 Model[1] = (byte)(48 + ModelPriority);
+//             }
+//             else if ((ModelPriority > 9 && ModelPriority < 16))
+//             {
+//                 Model[1] = (byte)(55 + ModelPriority);
+//             }
+//             return Model;
+//         }
+
+func ByteToCharArray(val byte) []byte {
+	Model := [2]byte{}
+	ModelPriority := byte(val >> 4 & 15)
+	if ModelPriority <= 9 {
+		Model[0] = byte(48 + ModelPriority)
+	} else if ModelPriority > 9 && ModelPriority < 16 {
+		Model[0] = byte(55 + ModelPriority)
+	}
+	ModelPriority = byte(val & 15)
+	if ModelPriority <= 9 {
+		Model[1] = byte(48 + ModelPriority)
+	} else if ModelPriority > 9 && ModelPriority < 16 {
+		Model[1] = byte(55 + ModelPriority)
+	}
+	res := make([]byte, 2)
+	copy(res, Model[:])
+	return res
+}
+
+func DoubleByteToCharArray(val uint16) []byte {
+	DataList := [4]byte{}
+	charArray := ByteToCharArray(byte(val >> 8))
+	DataList[0] = charArray[0]
+	DataList[1] = charArray[1]
+	charArray = ByteToCharArray(byte(val))
+	DataList[2] = charArray[0]
+	DataList[3] = charArray[1]
+	res := make([]byte, len(DataList))
+	copy(res, DataList[:])
+	return res
+}
+
+//         public static byte[] DoubleByteToCharArray(ushort val)
+//         {
+//             var DataList = new byte[4];
+//             byte[] charArray = ByteToCharArray((byte)(val >> 8));
+//             DataList[0] = charArray[0];
+//             DataList[1] = charArray[1];
+//             charArray = ByteToCharArray((byte)val);
+//             DataList[2] = charArray[0];
+//             DataList[3] = charArray[1];
+//             return DataList;
+//         }
+
+// func DoubleByteToCharArray(val uint16) []byte {
+// 	DataList := [4]byte{}
+// 	charArray := ByteToCharArray(byte(val >> 8))
+// 	DataList[0] = charArray[0]
+// 	DataList[1] = charArray[1]
+// 	charArray = ByteToCharArray(byte(val >> 8))
+// 	DataList[2] = charArray[0]
+// 	DataList[3] = charArray[1]
+// 	res := make([]byte, len(DataList))
+// 	copy(res, DataList[:])
+// 	return res
+// }
+
+func Transfer2AsciiCodeByte(input string) []byte {
+	var result []byte
+	for _, char := range []rune(input) {
+		result = append(result, byte(char))
+	}
+	return result
+}
+
+type s1 struct {
+	Ctype string
+	Value interface{}
+}
+
+type s2 struct {
+	Ctype string
+	Value Vv
+}
+
+type Vv struct {
+	A string
+	B Cc
+}
+
+type Cc struct {
+	I int
 }
 
 const (
@@ -774,4 +1037,396 @@ aa:
 	log.Println(<-ctx.Done())
 	log.Println(<-ctx.Done())
 	fmt.Println(99)
+}
+
+func sss() {
+	// util.InitUtil()
+	// cache.InitCache()
+	// key := "ccc"
+	// cache.C.Set(key, 123, 10*time.Second)
+	// log.Debug(cache.C.Get(key))
+	// db.InitDB()
+	// for i := 0; i < 1000000000000000000; i++ {
+	//     // <-time.After(2 * time.Millisecond)
+	//     log.Debug(i)
+	//     go func(ii int) {
+	//         time.After(100 * time.Millisecond)
+	//         log.Info(ii)
+	//     }(i)
+	//     // go db.TestMysql()
+	//     // go db.TestCH()
+
+	// }
+	// <-time.After(1 * time.Hour)
+	// a := "aaaa"
+	// fmt.Println(a.Len())
+
+	// sync.TestCond()
+	// pprof.Testranddomstr()
+
+	// fmt.Println(leetcode.Stradd("98", "55"))
+	// ss := "klsadjla"
+	// fmt.Println(ss[2])
+	// rand.Seed(time.Now().UnixNano())
+	// for i := 0; i < 3; i++ {
+	// fmt.Println(myrand())
+	// fmt.Println(myrand())
+	// fmt.Println(myrand())
+	// fmt.Println("--====--")
+	// }
+
+	// for i := 0; i < 5; i++ {
+	//     rand.Seed(time.Now().UnixNano())
+	//     fmt.Println(rand.Intn(100))
+	// }
+
+	// leetcode.Test()
+	go func() {
+		http.ListenAndServe(":9008", nil)
+	}()
+	// f, err := os.Create("trace.out")
+	// if err != nil {
+	// 	panic(err)
+	// }
+
+	// defer f.Close()
+
+	// //启动trace goroutine
+	// err = trace.Start(f)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// defer trace.Stop()
+
+	// log.SetFlags(0)
+	// log.Println("begin", carbon.Now().ToDateTimeString())
+	// a := []int{1}
+	// a = append(a, 1, 2, 3)
+	// println(a)
+	// println(append([]byte("hello "), "world"...))
+	// fmt.Println(string(append([]byte("hello "), "world"...)))
+	// t1 := time.Now()
+	// time.Sleep(time.Second)
+	// t2 := time.Since(t1)
+	// println(t2)
+	// sliceBiggerCapNums()
+	// sortprintln(5)
+	// SignalHandle()
+	// testContext()
+	// consume(15)
+	// sync2.Comparesyncchan()
+	// getslicecap()
+	// ctx,_:=context.WithTimeout(context.Background(),time.Second)
+	// testclosechan()
+	// go gogogo()
+	// go gogogo()
+	// go gogogo2()
+	// go gogogo3()
+	// go gogogo3()
+	// go gogogo3()
+	// go gogogo3()
+	// go gogogo3()
+	// go gogogo3()
+	// go gogogo()
+	// gogogo()
+	// println(GameCallScore)
+	// println(GameCallScore2)
+	// println(GameCallScore3)
+	// println(GamePlaying)
+	// println(GamePlaying2)
+	// println(GamePlaying3)
+	// println(GamePlaying3)
+	// println(aa)
+	// println(GameEnd2)
+	// s := []int{1, 2, 3, 4, 5, 6}
+	// a := s[:3]
+	// a = append(a, 7)
+	// fmt.Println(s, a) //[6/6]0x14000157f38 [4/6]0x14000157f38 [1 2 3 7 5 6] [1 2 3 7]
+	// b := append(a, []int{8, 8, 9}...)
+	// fmt.Println(s, a, b)//[1 2 3 7 5 6] [1 2 3 7] [1 2 3 7 8 8 9]
+	// a 1,2,3,7,5,6
+	// s =a
+	// var x int
+	// t := runtime.GOMAXPROCS()
+	// fmt.Println(runtime.NumCPU())
+	// for i := 0; i < 100; i++ {
+	// 	go func() {
+	// 		for {
+	// 			x++
+	// 		}
+	// 	}()
+	// }
+	// time.Sleep(time.Second)
+	// fmt.Println("x =", x)
+	// log.Println("end", carbon.Now().ToDateTimeString())
+
+	// for {
+	// }
+
+	// ctx, cancel := context.WithCancel(context.Background())
+	// go func() {
+	// 	<-time.After(3 * time.Second)
+	// 	cancel()
+	// }()
+
+	// fmt.Println(<-ctx.Done())
+	// fmt.Println(<-ctx.Done())
+	// fmt.Println(<-ctx.Done())
+	// fmt.Println(<-ctx.Done())
+	// cankao, _ := time.Parse("2006-01-02", "2021-08-24")
+	// fmt.Println(time.Since(cankao) > 74*time.Hour)
+	// println("aaaa")
+	// ch := make(chan int)
+	// go func() {
+	// 	fmt.Println(<-ch)
+	// 	fmt.Println(<-ch)
+	// 	fmt.Println(<-ch)
+	// 	fmt.Println(<-ch)
+	// }()
+	// ch <- 1
+	// close(ch)
+
+	// b1, err := json.Marshal(s1{
+	// 	Ctype: "string",
+	// 	Value: Vv{
+	// 		A: "AAA",
+	// 		B: Cc{
+	// 			I: 9999,
+	// 		},
+	// 	},
+	// })
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println(string(b1))
+	// var ss1 s1
+	// err = json.Unmarshal(b1, &ss1)
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println("ss1")
+	// fmt.Println(ss1)
+	// plog.InfoDump(ss1, "ss1")
+
+	// println("=====")
+
+	// b2, _ := json.Marshal(ss1)
+	// var ss2 s2
+	// json.Unmarshal(b2, &ss2)
+	// plog.InfoDump(ss2, "ss2")
+
+	// b2, err := json.Marshal(s1{
+	// 	"int",
+	// 	2,
+	// })
+	// if err != nil {
+	// 	panic(err)
+	// }
+	// fmt.Println(string(b2))
+
+	// type testSturct struct {
+	// 	Name string
+	// 	Num  int
+	// }
+
+	// testStructs := []testSturct{
+	// 	{
+	// 		Name: "test2",
+	// 		Num:  2,
+	// 	},
+	// 	{
+	// 		Name: "test3",
+	// 		Num:  3,
+	// 	},
+	// 	{
+	// 		Name: "test1",
+	// 		Num:  1,
+	// 	},
+	// }
+
+	// sort.Slice(testStructs, func(i, j int) bool {
+	// 	return testStructs[j].Num > testStructs[i].Num // 升序
+	// 	// return testStructs[i].Num > testStructs[j].Num  // 降序
+	// })
+	// var aa []testSturct
+
+	// for _, v := range testStructs {
+	// 	if v.Num > 2 {
+	// 		continue
+	// 	}
+	// 	aa = append(aa, v)
+	// }
+	// log.Println(testStructs)
+	// log.Println(aa)
+	// realCommand := []byte{0, 1, 0, 0, 0, 6, 1, 3, 0, 0, 0, 49, 1, 1, 1}
+	// sss := "\x00\x01\x00\x00\x00\x06\x01\x03\x00\x00\x001\x01\x01\x01"
+	// fmt.Println(realCommand)
+	// plog.InfoDump(string([]byte{59, 59, 59}), " string([]byte{57, 57, 57})")
+	// plog.InfoDump(string(realCommand), "string(command)")
+	// fmt.Println(string([]byte("\x00\x01\x00\x00\x00\x06\x01\x03\x00\x00\x001\x01\x01\x01")) == string(realCommand))
+	// fmt.Println(sss)
+	// real := "000100000065010362000000010000000000000000000000000001000000000000000000010000000000000000000000000000000000000000000000000000000500000000000002c800000a1501be00000000000000000000000000000000000000000000000000000000"
+
+	// fmt.Println([]byte(real))
+
+	// ss := "999"
+	// buf := []byte(ss)
+	// plog.InfoDump(buf)
+	// plog.InfoDump(buf[0])
+	// plog.InfoDump(string(buf))
+	// buf := []byte{0x00, 0x01, 0x00, 0x00, 0x00, 0x65, 0x01, 0x03, 0x62, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xc8, 0x00, 0x00, 0x0a, 0x15, 0x01, 0xbe, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}
+	// fmt.Println(buf[5])
+	// fmt.Println(string(buf))
+	// buf := []byte{0, 1, 0, 0, 0, 11, 1, 16, 0, 43, 0, 3, 6, 0, 1, 0, 0, 0, 0}
+	// buf2 := []byte{111, 116, 104, 101, 114, 32, 109, 101, 115, 115, 97, 103, 101}
+	// fmt.Println(string(buf2))
+	// fmt.Println(int(byte(88)))
+	// fmt.Println(int64(byte(88)))
+	// fmt.Println(int32(byte(88)))
+	// fmt.Println((255))
+	// test, _ := hex.DecodeString("9")
+	// fmt.Println(test)
+	// fmt.Println(bytes.Compare(test, 190)) // 0
+
+	// fmt.Println((Transfer2AsciiCodeByte("ST哈哈哦s")))
+	// fmt.Println([]byte(rune(("ST哈哈哦s"))))
+	// fmt.Println(ByteToCharArray(byte(245))) //70 53
+
+	// fmt.Println(Transfer2AsciiCodeByte(strconv.FormatInt(int64(245), 16)))
+	// fmt.Println(len(PadRight(" ", 5, "a")))
+	// fmt.Println((PadRight(" ", 5, "a")))
+	// str := "中国"
+	// fmt.Println(Transfer2AsciiCodeByte("abcabc"))
+	// fmt.Println([]byte("中国"))
+	// // res, _ := UTF82GB2312([]byte("中国"))
+	// // fmt.Println(res)
+	// fmt.Println([]rune(str))
+
+	// sText := "中国"
+	// textQuoted := strconv.QuoteToASCII(sText)
+	// textUnquoted := textQuoted[1 : len(textQuoted)-1]
+	// fmt.Println(textUnquoted)
+
+	// sUnicodev := strings.Split(textUnquoted, "\\u")
+	// var context string
+	// for _, v := range sUnicodev {
+	// 	if len(v) < 1 {
+	// 		continue
+	// 	}
+	// 	temp, err := strconv.ParseInt(v, 16, 32)
+	// 	if err != nil {
+	// 		panic(err)
+	// 	}
+	// 	context += fmt.Sprintf("%c", temp)
+	// }
+	// fmt.Println(context)
+	// fmt.Println([]rune(sText))
+	// fmt.Println([]rune(context))
+
+	// enc := mahonia.NewDecoder("gbk")
+	// fmt.Println(([]byte(enc.ConvertString(context))))
+	// fmt.Println([]byte(enc.ConvertString(sText)))
+	// s := []int{1, 2, 3}
+	// f := []int{1, 2, 3}
+	// a := append(f, s[1:2]...)
+	// fmt.Println(a)
+	// fmt.Println(DoubleByteToCharArray(uint16(18)))
+	// fmt.Println(buildSend2DeviceDataForCraftCommandCraftNames("i文华懂啊哇"))
+	// fmt.Println(len(buildSend2DeviceDataForCraftCommandCraftNames("i文华懂啊哇")))
+	// fmt.Println(GetAsciiStr("haskdjh7897", 11, 0))
+
+	// fmt.Println(PadLeft("a33", 7, "xxxsa"))
+	// fmt.Println(Transfer2AsciiCodeByte("345.9"))
+	// fmt.Println(uint16(0))
+	// fmt.Println(uint16(1))
+	// fmt.Println(GetAsciiStr("011.5", 5, 1))
+	// fmt.Println(PadLeft(Transfer2AsciiCodeByte([]byte("100.5")), 4, "0"))
+	// DebugHex(ByteToCharArray(99))
+	// DebugHex(Transfer2AsciiCodeByte("DL"))
+	// DebugHex(buildSend2DeviceDataForCraftCommandCraftNames("1107-"))
+	// DebugHex(buildSend2DeviceDataForCraftCommandCraftNames("1107-黑"))
+	// DebugHex(Utf8ToGbk([]byte("1107-黑")))
+	// s := []byte{0x30}
+	// var i1 int64 = 100 // [00000000 00000000 ... 00000001 11111111] = [0 0 0 0 0 0 1 255]
+
+	// s1 := make([]byte, 4)
+	// buf := bytes.NewBuffer(s1)
+
+	// // 数字转 []byte, 网络字节序为大端字节序
+	// binary.Write(buf, binary.BigEndian, i1)
+	// fmt.Println(buf.Bytes())
+
+	// buf.Reset()
+	// binary.Write(buf, binary.LittleEndian, i1)
+	// fmt.Println(buf.Bytes())
+
+	// fmt.Println(byte(999))
+	// fmt.Println(DoubleByteToCharArray(0))
+	// fmt.Println(IntToBytesLittle(998))
+	// fmt.Println(TransferBytes2AsciiCodeString([]byte{85, 80}))
+	// res := [9]int{}
+	// a := []int{1, 2, 3, 4, 5}
+	// copy(res[:], a)
+	// fmt.Println(res)
+	// ioutil.WriteFile(`保存文件的文件名.txt`, []byte("888"), 0666)
+	// v := sst{
+	// 	s: [3]int{
+	// 		1, 2, 3,
+	// 	},
+	// }
+	// a := v.s[1]
+	// println(a)
+	// (&v).ss()
+	// b := v.s[1]
+	// println(a)
+	// println(b)
+	// ch := make(chan int, 10)
+	// go func() {
+	// 	for {
+	// 		num := <-ch
+	// 		if num < 20 {
+	// 			<-time.After(1 * time.Second)
+	// 		} else {
+	// 			<-time.After(4 * time.Second)
+	// 		}
+	// 		fmt.Println(num, "执行完了!")
+	// 	}
+	// }()
+
+	// for i := 0; i < 100; i++ {
+	// 	ctx, _ := context.WithTimeout(context.Background(), 3*time.Second)
+	// 	select {
+	// 	case <-ctx.Done():
+	// 		fmt.Println(i, "添加时超时!!!")
+	// 	case ch <- i:
+	// 		fmt.Println(i, "任务添加了!!!")
+	// 	}
+	// }
+
+	// for {
+	// }
+	// fmt.Println(ModelTypeInout)
+
+	// ch := make(chan int)
+	// ch <- 10
+	// fmt.Println("发送成功")
+	// fmt.Println(time.Now().Zone())
+	// fmt.Println(time.Now().Local().Zone())
+	// fmt.Println(time.Now().UTC().Zone())
+
+	// fmt.Println(time.Local)
+	// fmt.Println(time.ParseInLocation())
+	// name, offset := time.Now().Zone()
+	// fmt.Println(name, offset)
+
+	// parsed, _ := time.Parse("2006-01-02 15:04", "2021-09-13 07:05")
+
+	// fmt.Println(parsed)
+	// fmt.Println(time.Unix(parsed.Unix(), 0))
+
+	// fmt.Println("=====")
+
+	// parsed2, _ := time.ParseInLocation("2006-01-02 15:04", "2021-09-13 07:05", time.Local)
+	// fmt.Println(parsed2)
+	// fmt.Println(time.Unix(parsed2.Unix(), 0))
 }

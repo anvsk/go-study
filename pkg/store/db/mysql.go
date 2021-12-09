@@ -1,19 +1,19 @@
 package db
 
 import (
-    "database/sql"
-    "fmt"
-    "go-ticket/pkg/util"
-    llog "log"
-    "os"
-    "sync"
-    "time"
+	"database/sql"
+	"fmt"
+	"go-ticket/pkg/util"
+	llog "log"
+	"os"
+	"sync"
+	"time"
 
-    "github.com/pieterclaerhout/go-log"
-    "gorm.io/driver/mysql"
-    "gorm.io/gorm"
-    "gorm.io/gorm/logger"
-    "gorm.io/plugin/prometheus"
+	"github.com/pieterclaerhout/go-log"
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
+	"gorm.io/plugin/prometheus"
 )
 
 type mysqlDB struct {
@@ -26,7 +26,9 @@ var orm mysqlDB
 func (d *mysqlDB) getInstance() *gorm.DB {
     d.onceLock.Do(func() {
         cf := util.Config.Store.DB.Connects["mysql"]
-        dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", cf.User, cf.Password, cf.Host, cf.Port, cf.DbName)
+        // dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", cf.User, cf.Password, cf.Host, cf.Port, cf.DbName)
+        // dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True&loc=Local", cf.User, cf.Password, cf.Host, cf.Port, cf.DbName)
+        dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8mb4&parseTime=True", cf.User, cf.Password, cf.Host, cf.Port, cf.DbName)
         sqlDB, _ := sql.Open("mysql", dsn)
         sqlDB.SetMaxIdleConns(10)
         sqlDB.SetMaxOpenConns(100)
