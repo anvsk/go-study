@@ -3,10 +3,11 @@ package sync2
 import (
 	"fmt"
 	"sync"
+	"testing"
 	"time"
 )
 
-func Runs() {
+func TestRuns(*testing.T) {
 	max = 1000000
 
 	// task1 := make(chan int, 5000)
