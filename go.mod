@@ -26,6 +26,7 @@ require (
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/satori/go.uuid v1.2.0
 	github.com/sethgrid/pester v1.1.0
+	github.com/shopspring/decimal v1.3.1 // indirect
 	github.com/spf13/viper v1.8.1
 	github.com/unrolled/secure v1.0.9
 	github.com/utrack/gin-merry v0.0.0-20160429113854-ed2bd26ee5ad

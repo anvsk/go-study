@@ -15,7 +15,7 @@ import (
 )
 
 var localAddr = "http://localhost:8545"
-var project = "0x760855f38bb3CE5c4c8c360e846812878665e477"
+var project = "0xC8433d2Db0De5F548faf1b6D3795dc768DE7E3cd"
 
 type EthClient struct {
 	Addr    string

@@ -86,11 +86,11 @@ func TestJiaoYi(*testing.T) {
 	} else {
 		println(client2)
 	}
-	// if sno, err := client.Transto("201757eded6e4ee1e7067b800a5e7bb953dce9e1c82eefddf3754d24bb1690ca", "0x822b3d337F53BE9f0E6A87fb3D7de913E806F1e4", 5); err != nil {
-	// 	log.Fatal(err)
-	// } else {
-	// 	println(sno)
-	// }
+	if sno, err := client.Transto("201757eded6e4ee1e7067b800a5e7bb953dce9e1c82eefddf3754d24bb1690ca", "0x822b3d337F53BE9f0E6A87fb3D7de913E806F1e4", 5); err != nil {
+		log.Fatal(err)
+	} else {
+		println(sno)
+	}
 }
 
 func TestSub(*testing.T) {

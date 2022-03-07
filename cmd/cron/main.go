@@ -1,14 +1,6 @@
 package main
 
-import (
-	"bytes"
-	"fmt"
-	"log"
-	"net/http"
-	"os/exec"
-
-	"github.com/robfig/cron/v3"
-)
+import "go-ticket/cmd/cron/demo1"
 
 /**************************
 
@@ -34,41 +26,7 @@ Entry                  | Description                                | Equivalent
 **************************/
 
 func main() {
-	runTest()
-}
-
-var myHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("hello world"))
-})
-
-func runTest() {
-	// c := cron.New(cron.WithSeconds(), cron.WithChain(
-	//     cron.Recover(cron.DefaultLogger), // or use cron.DefaultLogger
-	// ))
-	c := cron.New(cron.WithSeconds())
-	c.Start()
-	defer c.Stop()
-	// c.AddFunc("*/1 * * * * *", func() {
-	//     fmt.Println(time.Now().Clock())
-	// })
-	c.AddFunc("@every 1s", func() { fmt.Println("@every 5s") })
-	// c.AddFunc("@every 1m", func() { panic("panic") })
-	// c.AddFunc("0 0 8 * * *", func() {
-	//     util.InitUtil()
-	//     ticket.Bootstrap()
-	// })
+	demo1.Demo1()
 	for {
 	}
-}
-
-func exec_shell(s string) {
-	cmd := exec.Command("/bin/bash", "-c", s)
-	var out bytes.Buffer
-
-	cmd.Stdout = &out
-	err := cmd.Run()
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Printf("%s", out.String())
 }
