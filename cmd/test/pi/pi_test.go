@@ -51,3 +51,10 @@ func TestCaculPI(*testing.T) {
 	//输出执行时间，单位为毫秒。
 	fmt.Printf("spend time: %vs\n", end.Sub(start).Seconds())
 }
+
+func term2(ch chan float64, v float64) {
+	k := int64(1) * n / int64(v+1)
+	x := h * (float64(k) + 0.5)
+	res := f(x) * h
+	ch <- res
+}

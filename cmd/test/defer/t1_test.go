@@ -9,6 +9,20 @@ import (
 	"testing"
 )
 
+func TestMutilDefer(*testing.T) {
+	defer func() {
+		fmt.Println("aa")
+	}()
+	defer func() {
+		panic("bb")
+		fmt.Println("bb")
+	}()
+	defer func() {
+		panic("aa")
+		fmt.Println("cc")
+	}()
+}
+
 func TestArguDefer(*testing.T) {
 	println(f())
 }

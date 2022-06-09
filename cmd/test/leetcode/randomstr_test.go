@@ -2,6 +2,7 @@ package leetcode
 
 import (
 	"math/rand"
+	"testing"
 
 	"github.com/pkg/profile"
 )
@@ -24,7 +25,7 @@ func concat(n int) string {
 	return s
 }
 
-func Testranddomstr() {
+func TestRanddomstr(*testing.T) {
 	defer profile.Start(profile.MemProfile, profile.MemProfileRate(1)).Stop()
 	concat(100)
 }
