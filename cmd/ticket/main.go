@@ -1,11 +1,11 @@
 package main
 
 import (
-    "go-ticket/pkg/util"
-    "go-ticket/service/ticket"
+	"go-study/pkg/util"
+	"go-study/service/ticket"
 )
 
 func main() {
-    util.InitUtil()
-    ticket.Bootstrap()
+	util.InitUtil()
+	ticket.Bootstrap()
 }

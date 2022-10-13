@@ -1,11 +1,11 @@
 package router
 
 import (
-    "go-ticket/cmd/api/internal/admin"
+	"go-study/cmd/api/internal/admin"
 
-    "github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin"
 )
 
 func AdminRouters(e *gin.Engine) {
-    e.GET("/users", admin.UsersHandler)
+	e.GET("/users", admin.UsersHandler)
 }

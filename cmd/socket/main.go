@@ -6,7 +6,7 @@ import (
 	"bytes"
 	"encoding/binary"
 	"fmt"
-	"go-ticket/cmd/socket/server"
+	"go-study/cmd/socket/server"
 	"net"
 	"os"
 )

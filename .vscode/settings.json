@@ -1,3 +1,5 @@
 {
-    "go.inferGopath": false
+    "go.inferGopath": false,
+    "commentTranslate.hover.enabled": false,
+    "commentTranslate.targetLanguage": "zh-CN"
 }

@@ -2,7 +2,7 @@ package demo1
 
 import (
 	"fmt"
-	"go-ticket/cmd/cron/job"
+	"go-study/cmd/cron/job"
 	"log"
 	"runtime"
 

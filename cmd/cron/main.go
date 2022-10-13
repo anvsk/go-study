@@ -1,6 +1,6 @@
 package main
 
-import "go-ticket/cmd/cron/demo1"
+import "go-study/cmd/cron/demo1"
 
 /**************************
 

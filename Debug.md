@@ -44,4 +44,16 @@ postman.setGlobalVariable("gostudy-token", JSON.parse(responseBody).token);
 ```
 
 
+#### Test 测试用例
+* gotests 生成表格驱动代码块，直接填入测试数据即可
+go get -u github.com/cweill/gotests/
+gotests -all -w split.go #生成split.go的测试用例
+* assert 利用该包assert.Equal() 格式化输出
+go get -u github.com/stretchr/testify/assert
+* 运行benchmark
+go test -bench=.  -run=^# -benchtime 5s 
+结果输出
+第一列是执行的函数名称，第二列是总的执行次数，第三列是平均运行时间；
+
+
     
