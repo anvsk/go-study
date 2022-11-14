@@ -4,4 +4,5 @@ config.yml
 cmd/.DS_Store
 *_local.*
 *_local
+question/*.md
 question/*
