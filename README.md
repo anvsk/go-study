@@ -5,7 +5,6 @@
 * Go项目规范、目录文件命名等、基础架构搭建[config、store、cache、toollibs]
 * Gin高性能WEB框架的使用、包含中间件JWT、路由定义、目录结构规划和封装
 * Gorm Go版MYSQL ORM 使用示例包含自动迁徙、关联模型、预加载
-* 抢票DEMO脚本
 > todo
 1. cron 完善
 2. rpc [etcd+grpc]
@@ -16,11 +15,11 @@
 ### 目录说明
 - cmd          功能模块，每个模块打包成独立的执行文件，之间毫无关联
 
-    - ticket   DEMO: 嵊泗抢票脚本
     - api      GIN API服务模块[已加入gin、路由、中间件、gorm示例、具体看该目录README.md]
     - rpc      rpc 服务模块
     - cron     定时脚本模块
-    - test     测试用例
+    - test     用例demo
+    - question 面试相关
 
 - pkg          可公用的工具类、与业务毫无关联
     - store    mysql、redis存储相关
