@@ -17,8 +17,13 @@ func TestSssss(t *testing.T) {
 // 采用回溯法，处理剩余的空格
 
 // 依次单个九宫格处理即可,不用考虑相邻\交错的情况
-
-var 
+/**
+func (){
+	if true{
+		return
+	}
+}
+**/
 
 func sudu() {
 	a := [][]string{
@@ -36,7 +41,7 @@ func sudu() {
 	_ = a
 	orig := initArr(a)
 	// 可能的数量==>坐标
-	h1 := map[int][2]int{}
+	h1 := map[int][][2]int{}
 	// 保存阵列每个位置可能出现的数字
 	couldArr := [9][9][]int{}
 	for rowk, row := range orig {
@@ -55,18 +60,37 @@ func sudu() {
 			} else {
 				couldArr[rowk][colk] = could
 			}
-			h1[len(could)] = [2]int{rowk, colk}
+			if h1[len(could)] == nil {
+				h1[len(could)] = make([][2]int, 0)
+			}
+			h1[len(could)] = append(h1[len(could)], [2]int{rowk, colk})
 		}
 	}
-
-	// 回溯法
-	i := 2
-	for i < 9 {
-		// todo
-
-		i++
+	for i := 2; i < 8; i++ {
+		vv, ok := h1[i]
+		if !ok {
+			continue
+		}
+		for _, v := range vv {
+			couldsInt := couldArr[v[0]][v[1]]
+			for _, vvv := range couldsInt {
+				orig[v[0]][v[1]] = vvv
+			}
+		}
 	}
 }
+
+func traceBack() {
+
+}
+
+/**
+
+// 终止条件
+当前九宫格所有格子满足条件
+
+
+**/
 
 func initArr(s [][]string) [][]int {
 	res := [][]int{}

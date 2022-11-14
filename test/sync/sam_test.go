@@ -79,6 +79,8 @@ func main2() {
 	// sync.Mutex{}
 	fmt.Println(i) // read i
 
+	a := sync.Map{}
+
 }
 
 func loop(ch chan int) {

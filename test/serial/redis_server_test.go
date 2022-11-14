@@ -8,7 +8,7 @@ import (
 
 // 测试redis的序列化协议
 func TestMain(t *testing.T) {
-	l, _ := net.Listen("tcp", "127.0.0.1:63790")
+	l, _ := net.Listen("tcp", "127.0.0.1:6379")
 	fmt.Println("wait connect...")
 	for {
 		conn, _ := l.Accept()

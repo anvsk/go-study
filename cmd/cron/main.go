@@ -1,6 +1,9 @@
 package main
 
-import "go-study/cmd/cron/demo1"
+import (
+	"fmt"
+	"time"
+)
 
 /**************************
 
@@ -25,8 +28,45 @@ Entry                  | Description                                | Equivalent
 
 **************************/
 
+// func main() {
+// 	demo1.Demo1()
+// 	for {
+// 	}
+// }
+
 func main() {
-	demo1.Demo1()
+	fmt.Println("begin", time.Now())
+	// tt := time.NewTicker(time.Second)
+	tt := GetTicker(time.Second)
+	<-time.After(3 * time.Second)
+	go func() {
+		for {
+			<-tt.C
+			ttt := tt.T
+			fmt.Println("tt:", time.Now().Format("2006-01-02 15:04:05"), ttt.Format("2006-01-02 15:04:05"))
+		}
+	}()
 	for {
 	}
+}
+
+type Aa struct {
+	C chan struct{}
+	T time.Time
+}
+
+// change return struct to {chan + time(now)}
+func GetTicker(d time.Duration) Aa {
+	ch := Aa{
+		C: make(chan struct{}),
+	}
+	go func() {
+		for {
+			time.Sleep(d)
+			// todo
+			ch.C <- struct{}{}
+			ch.T = time.Now()
+		}
+	}()
+	return ch
 }

@@ -1,41 +1,47 @@
-# gmp
+### 参考站点
+https://www.topgoer.cn/docs/gomianshiti/gomianshiti-1dd225t6esqld
+#### gmp
 * 该模型跟系统级线程区别？用户态级别、轻量、调度切换开销小
 * 调度时机、如m阻塞后怎么调度的
 自旋/饥饿模式
 
-# 基础类型实现
+#### 基础类型实现
 slice扩容和底层实现
 * map扩容和底层实现
 
-# channel
+#### channel
 几种情况发送和接收会怎么样？
 * 如关闭的channel写会panic、读会接收零值、常用这个特性做状态处理
 有缓冲chan和无缓冲区别
 常见问题：用chan实现多携程顺序打印
 
-# reflect 
-*reflect和interface互转
-*怎么找到对应的方法、tag等
-*DeepEqual
+#### reflect 
+reflect和interface互转
+怎么找到对应的方法、tag等
+DeepEqual
 
-# grpc
+#### grpc
 了解通信模型，客户端和服务端单向、一单向一流式、双向流式
 了解生态、注册发现、服务治理、
 
-# leetcode刷算法
+#### leetcode刷算法
 * 快速排序
 动态规划
 
-# mysql过一遍
+#### mysql过一遍
 * b+树特性、b树区别
 * 索引和数据怎么存储的
 执行顺序
 explain分析
 
-# redis
+#### redis
 list 、set 、 zset底层结构和时间复杂度
+set取交集\并集\差集
+sinter
+sunion
+sdiff
 
-# eth
+#### eth
 了解区块了概念
 过下相关面试点
 工作的相关内容
